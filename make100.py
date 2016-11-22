@@ -22,21 +22,39 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import sys
-
 from autots import Molecule
 from autots import Mutation
 from autots import connect
 
+import random
 
 if __name__=="__main__":
 
-    input_filename = sys.argv[1]
-    input_mutation = sys.argv[2]
+    mol = Molecule("examples/diels-alder.xyz")
 
-    mol = Molecule(input_filename)
-    mut = Mutation(input_mutation)    
+    muts = [Mutation("mutations/cn.xyz"),
+            Mutation("mutations/cooh.xyz"),
+            Mutation("mutations/nh2.xyz"),
+            Mutation("mutations/oh.xyz")]
 
-    output = connect(mol, [mut], mol.bonds[:1])
+    unique_structures =  []
 
-    print output
+    for i in range(100):
+
+        # How many mutations?
+        n = random.randint(1, 3)
+
+        # Which n bonds?
+        new_bonds = random.sample(mol.bonds, n)
+
+        # Which n mutations?
+        new_muts = [random.choice(muts) for _ in range(n)]
+
+        output = connect(mol, new_muts, new_bonds)
+
+        filename = "initial%04i.xyz" % (i + 1)
+        f = open(filename, "w")
+        f.write(output)
+        f.close()
+
+        
