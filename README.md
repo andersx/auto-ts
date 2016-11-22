@@ -47,3 +47,23 @@ PM3 optimized product geometry from ORCA
 
 The line with $BONDS define a list of bonds in the complex that can be replaced, in this case a single  C-H bond is defined.
 
+In the "mutations" folder you can find a bunch of xyz-files with functional groups. You can add more yourself. The format is standard xyz-format, with the two first atoms being the atoms that replace the e.g. C-H bond in the reaction molecule.
+
+Reactant/product xyz-files and functional group xyz-files are parsed into two different classes.
+
+A simple example to use Auto-TS is the following code (also found in the example.py file):
+
+```
+from autots import Molecule
+from autots import Mutation
+from autots import connect
+
+
+mol = Molecule("examples/diels-alder.xyz")
+mut = Mutation("mutations/nh2.xyz")    
+
+output = connect(mol, mut, mol.bonds[0])
+
+print output
+
+```

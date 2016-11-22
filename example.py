@@ -24,10 +24,9 @@
 
 import sys
 
-from molecule import Molecule
-from mutation import Mutation
-
-from utils import connect
+from autots import Molecule
+from autots import Mutation
+from autots import connect
 
 
 if __name__=="__main__":
