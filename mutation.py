@@ -22,22 +22,27 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import sys
+class Mutation:
 
-from molecule import Molecule
-from mutation import Mutation
+    def __init__(self, filename):
 
-from utils import connect
+        f = open(filename, "r")
+        lines = f.readlines()
+        f.close()
 
+        self.natoms = int(lines[0])
 
-if __name__=="__main__":
+        self.xyz = []
 
-    input_filename = sys.argv[1]
-    input_mutation = sys.argv[2]
+        self.atoms = []
 
-    mol = Molecule(input_filename)
-    mut = Mutation(input_mutation)    
+        for i, line in enumerate(lines[2:2+self.natoms]):
 
-    output = connect(mol, mut, mol.bonds[0])
+            tokens = line.split()
+            # print "%4i:" % (i+1), line,
 
-    print output
+            self.atoms.append(tokens[0])
+            x = float(tokens[1])
+            y = float(tokens[2])
+            z = float(tokens[3])
+            self.xyz.append([x,y,z])
