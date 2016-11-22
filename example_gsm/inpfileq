@@ -1,0 +1,17 @@
+-----String Info-----
+SM_TYPE                         GSM                         
+MAX_OPT_ITERS                   100                               
+STEP_OPT_ITERS                  30                                 
+CONV_TOL                        0.0005                       
+ADD_NODE_TOL                    0.1                              
+SCALING                         1.0
+SSM_DQMAX                       0.8                           
+GROWTH_DIRECTION                0                                    
+INT_THRESH                      2.0                            
+MIN_SPACING                     10.                             
+INITIAL_OPT                     0                               
+FINAL_OPT                       150                           
+PRODUCT_LIMIT                   70.0                              
+TS_FINAL_TYPE                   0                                 
+NNODES                          11
+----------------------------------------------
